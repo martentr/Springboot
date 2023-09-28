@@ -1,9 +1,5 @@
 package com.App.entity;
-
-//import java.util.List;
 import java.util.Set;
-//import com.App.entity.Role;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,15 +11,11 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Set<Role> roles;
-
-    public String getUsername() {
-        return username;
-    }
     private String username;
     private String password;
 
@@ -33,33 +25,42 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    private Set<Role> roles;
 
     // Constructors, getters, and setters
 
-    public Set<Role> getRoles() {
-        return roles;
+    public User() {
+        // Default constructor
+    }
+
+    public User(String username, String password, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    // Getters and setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    // Default constructor
-    public User() {
-        // Default constructor with no arguments
-    }
-
-    // Constructor with username and password
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
+    // Other methods if needed
 }

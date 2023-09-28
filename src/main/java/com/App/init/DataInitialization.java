@@ -24,16 +24,19 @@ public class DataInitialization implements CommandLineRunner {
         this.passwordEncoder = passwordEncoder;
     }
 
+    
+
     @Override
     public void run(String... args) {
         // Insert three user records
-        User user1 = new User("user1", passwordEncoder.encode("password1"));
-        User user2 = new User("user2", passwordEncoder.encode("password2"));
-        User user3 = new User("user3", passwordEncoder.encode("password3"));
+        User user1 = new User("user1", passwordEncoder.encode("password1"), null);
+        User user2 = new User("user2", passwordEncoder.encode("password2"), null);
+        User user3 = new User("user3", passwordEncoder.encode("password3"), null);
 
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+    
 
         // Insert some initial client data
         Client client1 = new Client("Client 1", "client1@example.com", user1);
